@@ -111,6 +111,8 @@ public class FunctionalVsVisual {
 
 		sconf.setViewportSize(new RectangleSize(1200, 600));
 
+		sconf.setIgnoreDisplacements(true);
+
 		eyes.setConfiguration(sconf);
 
 		eyes.open(driver);
