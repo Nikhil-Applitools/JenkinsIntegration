@@ -113,6 +113,8 @@ public class FunctionalVsVisual {
 
 		sconf.setIgnoreDisplacements(true);
 
+		sconf.setWaitBeforeScreenshots(1000);
+
 		eyes.setConfiguration(sconf);
 
 		eyes.open(driver);
