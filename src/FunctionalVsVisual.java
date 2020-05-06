@@ -1,6 +1,7 @@
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.applitools.eyes.BatchInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -100,6 +101,13 @@ public class FunctionalVsVisual {
 
 		driver = new ChromeDriver();
 
+		String batchId = System.getenv("APPLITOOLS_BATCH_ID");
+		BatchInfo batch = new BatchInfo("JenkinsTestBatch");
+		if(batchId != null) {
+			batch.setId(batchId);
+			System.out.println("Applitools Batch ID is " + batchId);
+		}
+
 		Configuration sconf = new Configuration();
 
 		
@@ -111,9 +119,17 @@ public class FunctionalVsVisual {
 
 		sconf.setViewportSize(new RectangleSize(1200, 600));
 
+		sconf.setIgnoreDisplacements(true);
+
+		sconf.setWaitBeforeScreenshots(1000);
+
+		sconf.setBatch(batch);
+
 		eyes.setConfiguration(sconf);
 
 		eyes.open(driver);
+
+
 
 	}
 
